@@ -21,8 +21,15 @@ This project collects live aircraft data from the OpenSky API, streams it throug
 
 # 🏗️ System Architecture
 
+## How it works
+
 ![Architecture](assets/archi.png)
 
+A producer script polls the OpenSky API every 10 seconds and pushes each
+aircraft as a JSON event into a Kafka topic. A consumer reads from that topic,
+batch-inserts clean records into AWS RDS, and archives the raw JSON to S3
+with Hive-style partitioning. The Streamlit dashboard queries RDS and
+reloads every 30 seconds.
 ---
 
 # 🛠️ Technologies Used
@@ -40,80 +47,26 @@ This project collects live aircraft data from the OpenSky API, streams it throug
 
 ---
 
-# ⚙️ How to Run
-
-## 1. Clone the repository
+## Running it locally
 
 ```bash
 git clone https://github.com/YOUR_USERNAME/flight-tracker.git
 cd flight-tracker
-```
 
-## 2. Create virtual environment
-
-### Windows
-
-```bash
-python -m venv venv
-venv\Scripts\activate
-```
-
-```bash
-python3 -m venv venv
-source venv/bin/activate
-```
-
----
-
-## 3. Install dependencies
-
-```bash
+python -m venv venv && venv\Scripts\activate
 pip install -r requirements.txt
+
+cp .env.example .env
+# add your AWS credentials and RDS endpoint to .env
+
+docker-compose up -d           # start Kafka
+
+python scripts/producer.py     # terminal 1
+python scripts/consumer.py     # terminal 2
+streamlit run scripts/flight_dashboard.py  # terminal 3
 ```
 
----
-
-## 4. Configure environment variables
-
-Create a `.env` file using `.env.example`.
-
----
-
-## 5. Start Kafka
-
-```bash
-docker-compose up -d
-```
-
----
-
-## 6. Run the producer
-
-```bash
-python scripts/producer.py
-```
-
----
-
-## 7. Run the consumer
-
-```bash
-python scripts/consumer.py
-```
-
----
-
-## 8. Start the dashboard
-
-```bash
-streamlit run scripts/flight_dashboard.py
-```
-
-Open:
-
-```text
-http://localhost:8501
-```
+Open **http://localhost:8501**
 
 ---
 
@@ -148,7 +101,3 @@ Flight data comes from:
 https://opensky-network.org
 
 ---
-
-# 👨‍💻 Author
-
-Built by **Imasha Samarasinghe** as part of a data engineering learning project.
