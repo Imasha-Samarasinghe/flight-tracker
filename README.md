@@ -1,6 +1,8 @@
 # ✈️ Live Flight Tracker
 
-A real-time data engineering project that streams live aircraft data using Apache Kafka, stores it in AWS cloud services, and visualises it on a live dashboard.
+A real-time flight tracking pipeline built using Python, Apache Kafka, AWS, and Streamlit.
+
+This project collects live aircraft data from the OpenSky API, streams it through Kafka, stores it in AWS RDS and S3, and visualises everything on a live dashboard.
 
 ![Dashboard](assets/dashboard.png)
 
@@ -8,33 +10,31 @@ A real-time data engineering project that streams live aircraft data using Apach
 
 # 🚀 Features
 
-- Live global aircraft tracking
-- Apache Kafka streaming pipeline
+- Live aircraft tracking dashboard
+- Kafka-based streaming pipeline
 - AWS RDS PostgreSQL database
-- AWS S3 raw data archive
-- Real-time Streamlit dashboard
-- Interactive world map and analytics charts
-- Docker-based Kafka setup
+- AWS S3 raw data storage
+- Real-time charts and analytics
+- Docker setup for Kafka
 
 ---
 
-# 🏗️ Architecture
+# 🏗️ System Architecture
+
 ![Architecture](assets/archi.png)
 
 ---
 
-# 🛠️ Tech Stack
+# 🛠️ Technologies Used
 
-| Technology | Purpose |
-|---|---|
-| Python | Main programming language |
-| Apache Kafka | Streaming pipeline |
-| Docker | Kafka container setup |
-| AWS RDS PostgreSQL | Cloud database |
-| AWS S3 | Raw JSON storage |
-| Streamlit | Dashboard |
-| Plotly | Visualisations |
-| OpenSky API | Flight data source |
+- Python
+- Apache Kafka
+- Docker
+- AWS RDS PostgreSQL
+- AWS S3
+- Streamlit
+- Plotly
+- OpenSky Network API
 
 ---
 
@@ -44,7 +44,8 @@ A real-time data engineering project that streams live aircraft data using Apach
 flight-tracker/
 │
 ├── assets/
-│   └── dashboard.png
+│   ├── dashboard.png
+│   └── archi.png
 │
 ├── scripts/
 │   ├── producer.py
@@ -59,16 +60,14 @@ flight-tracker/
 
 ---
 
-# ⚙️ Setup
+# ⚙️ How to Run
 
-## 1. Clone repository
+## 1. Clone the repository
 
 ```bash
 git clone https://github.com/YOUR_USERNAME/flight-tracker.git
 cd flight-tracker
 ```
-
----
 
 ## 2. Create virtual environment
 
@@ -88,7 +87,7 @@ source venv/bin/activate
 
 ---
 
-## 3. Install requirements
+## 3. Install dependencies
 
 ```bash
 pip install -r requirements.txt
@@ -98,7 +97,7 @@ pip install -r requirements.txt
 
 ## 4. Configure environment variables
 
-Create `.env` using `.env.example`.
+Create a `.env` file using `.env.example`.
 
 ---
 
@@ -110,7 +109,7 @@ docker-compose up -d
 
 ---
 
-## 6. Run producer
+## 6. Run the producer
 
 ```bash
 python scripts/producer.py
@@ -118,7 +117,7 @@ python scripts/producer.py
 
 ---
 
-## 7. Run consumer
+## 7. Run the consumer
 
 ```bash
 python scripts/consumer.py
@@ -126,7 +125,7 @@ python scripts/consumer.py
 
 ---
 
-## 8. Run dashboard
+## 8. Start the dashboard
 
 ```bash
 streamlit run scripts/flight_dashboard.py
@@ -140,39 +139,33 @@ http://localhost:8501
 
 ---
 
-# ☁️ AWS Services Used
+# ☁️ AWS Services
 
-## AWS RDS PostgreSQL
-Stores processed flight records.
+### AWS RDS PostgreSQL
+Used to store processed flight data.
 
-## AWS S3
-Stores raw JSON flight data.
+### AWS S3
+Used to archive raw JSON flight records.
 
 ---
 
-# 📊 Dashboard Includes
+# 📊 Dashboard
 
-🌍 Live Aircraft Map
-Real-time global aircraft positions
-Colour-coded altitude visualization
-Hover tooltips with callsign, speed, and altitude
-🏆 Top Countries
-Countries with the most aircraft currently tracked
-🏔️ Altitude Distribution
-Histogram showing aircraft altitude ranges
-⚡ Speed Distribution
-Histogram of aircraft speed in km/h
-🍩 Airborne vs On Ground
-Donut chart comparing airborne and grounded aircraft
-🛸 Top 10 Fastest Aircraft
-Live ranking of fastest aircraft currently tracked
-📈 Aircraft Trend Over Time
-Aircraft captured per minute over the last 30 minutes
+The dashboard includes:
+
+- Live world map of aircraft
+- Top countries by aircraft count
+- Altitude distribution
+- Speed distribution
+- Airborne vs on-ground comparison
+- Top 10 fastest aircraft
+- Aircraft trend over time
+
 ---
 
 # 📡 Data Source
 
-Flight data provided by:
+Flight data comes from:
 
 https://opensky-network.org
 
@@ -180,4 +173,4 @@ https://opensky-network.org
 
 # 👨‍💻 Author
 
-Built by **Imasha Samarasinghe** as part of a data engineering portfolio project.
+Built by **Imasha Samarasinghe** as part of a data engineering learning project.
