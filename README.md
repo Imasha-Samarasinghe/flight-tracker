@@ -38,26 +38,6 @@ This project collects live aircraft data from the OpenSky API, streams it throug
 
 ---
 
-# 📂 Project Structure
-
-```text
-flight-tracker/
-│
-├── assets/
-│   ├── dashboard.png
-│   └── archi.png
-│
-├── scripts/
-│   ├── producer.py
-│   ├── consumer.py
-│   └── flight_dashboard.py
-│
-├── docker-compose.yml
-├── requirements.txt
-├── .env.example
-├── README.md
-```
-
 ---
 
 # ⚙️ How to Run
@@ -77,8 +57,6 @@ cd flight-tracker
 python -m venv venv
 venv\Scripts\activate
 ```
-
-### Mac/Linux
 
 ```bash
 python3 -m venv venv
