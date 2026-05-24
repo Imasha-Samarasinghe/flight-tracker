@@ -23,7 +23,7 @@ This project collects live aircraft data from the OpenSky API, streams it throug
 
 ## How it works
 
-![Architecture](assets/archi.png)
+![Architecture](assets/architecture.png)
 
 A producer script polls the OpenSky API every 10 seconds and pushes each
 aircraft as a JSON event into a Kafka topic. A consumer reads from that topic,
